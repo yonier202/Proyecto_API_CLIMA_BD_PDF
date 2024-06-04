@@ -2,6 +2,12 @@ const resultado = document.querySelector('#resultado');
 
 const formulario = document.querySelector('#formulario');
 
+const registrosxPagina = 40;
+
+let totalPaginas;
+
+let iterador;
+
 document.addEventListener('DOMContentLoaded', () => {
 
     formulario.addEventListener('submit', validarFormulario);
@@ -45,6 +51,9 @@ function buscarImagenes(termino) {
     fetch(url)
         .then(respuesta => respuesta.json())
         .then(resultado => {
+            console.log(resultado);
+            totalPaginas = CalcularPagina(resultado.totalHits);
+            console.log(totalPaginas);
             mostrarImagenes(resultado.hits);
         })
 
@@ -75,4 +84,24 @@ function mostrarImagenes(imagenes) {
             </div>
         `;
     });
+
+    iterador = crearPaginador(totalPaginas);
+
+    imprimirPaginador()
+}
+
+//geenador que va a registrar la cantidad de elementos de acuerdo  las paginas
+function imprimirPaginador() {
+    iterador = crearPaginador(totalPaginas);
+}
+
+function *crearPaginador(total) {
+    for (let i = 1; i <= total; i++) {
+        yield i;
+        
+    }
+}
+
+function CalcularPagina(total) {
+    return parseInt(Math.ceil(total / registrosxPagina));
 }
