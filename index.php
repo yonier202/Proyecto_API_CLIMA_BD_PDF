@@ -58,9 +58,17 @@
                     class="mt-5 w-full bg-red-600 p-3 uppercase font-bold cursor-pointer rounded text-center" 
                     >Obtener PDF
                 </a>
+                <a type="button"
+                    href="/php/reporte.php" target="_blank"
+                    class="mt-5 w-full bg-green-600 p-3 uppercase font-bold cursor-pointer rounded text-center" 
+                    >Obtener excel
+                </a>
         </div>
     </div>
 
     <script src="js/app.js"></script>
 </body>
 </html>
+
+<?php
+?>
